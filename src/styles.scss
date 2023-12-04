@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./uikit/theme/fonts.scss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@function toRem($px) {
+  @return calc($px / 16px) * 1rem;
+}
+
+
+
+html {
+  font-family: "Ubuntu";
+  color: hsl(213, 96%, 18%);
+  background-color: hsl(217, 100%, 97%);
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary-marine: "hsl(213, 96%, 18%)";
+  --color-primary-purplish-blue: "hsl(243, 100%, 62%)";
+  --color-primary-pastel-blue: "hsl(228, 100%, 84%)";
+  --color-primary-light-blue: "hsl(206, 94%, 87%)";
+  --color-primary-strawberry-red: "hsl(354, 84%, 57%)";
+
+  --color-neutral-cool-gray: "hsl(231, 11%, 63%)";
+  --color-neutral-light-gray: "hsl(229, 24%, 87%)";
+  --color-neutral-magnolia: "hsl(217, 100%, 97%)";
+  --color-neutral-alabaster: "hsl(231, 100%, 99%)";
+  --color-neutral-white: "hsl(0, 0%, 100%)";
+}

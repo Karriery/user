@@ -7,6 +7,8 @@ import { FormComponent } from './form/form.component';
 import { ResultComponent } from './result/result.component';
 import { HomeComponent } from './home/home.component';
 import { BookcallComponent } from './bookcall/bookcall.component';
+import { StepperComponent } from './stepper/stepper.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,8 +17,9 @@ import { BookcallComponent } from './bookcall/bookcall.component';
     ResultComponent,
     HomeComponent,
     BookcallComponent,
+    StepperComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
