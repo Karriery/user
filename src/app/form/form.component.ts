@@ -5,11 +5,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { DocumentService } from '../services/document.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -29,64 +31,111 @@ export class FormComponent {
   storage = 2;
   customProfile = 2;
   total = 9;
+  constructor(
+    private formBuilder: FormBuilder,
+    private documentService: DocumentService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      name: new FormControl(null, [
+      nom: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
         Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"),
       ]),
-      // email: new FormControl(null, [Validators.required, Validators.email]),
-      // phone: new FormControl(null, [
-      //   Validators.required,
-      //   Validators.pattern(
-      //     '^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'
-      //   ),
-      // ]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      tel: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(
+          '^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$'
+        ),
+      ]),
 
-      plan: new FormControl('arcadePlan'),
+      civilite: new FormControl(null),
+      yearOfBirth: new FormControl(null),
+      situationFamiliale: this.formBuilder.control([]),
+      avezVousEte: this.formBuilder.control([]),
+      avezVousRencontre: this.formBuilder.control([]),
 
-      billingPeriod: new FormControl(false),
+      nombreDenfants: new FormControl(null),
 
-      onlineService: new FormControl(null),
-      storage: new FormControl(null),
-      customProfile: new FormControl(null),
+      nombreDenfantsEleves: new FormControl(null),
+      etudeSuperieure: new FormControl(null),
+      ageSouhaiteDeDepart: new FormControl(null),
+      ageDuDebutdactiviteProfessionnelle: new FormControl(null),
+      niveauActuel: new FormControl(null),
+      evolution: new FormControl(null),
+      titreIndividuel: new FormControl(null),
+      titreProfessionnelFacultatif: new FormControl(null),
+      titreProfessionnelObligatoire: new FormControl(null),
     });
   }
+  updateMaritalStatus(value: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    const currentMaritalStatus = this.form.get(
+      'situationFamiliale'
+    ) as FormControl;
+    let selectedMaritalStatus = currentMaritalStatus.value || [];
 
-  changeBillingPeriod() {
-    let isYearly = this.form.controls['billingPeriod'].value;
-    if (isYearly) {
-      this.billingPeriod = 'yearly';
-      this.arcadePlan = 90;
-      this.advancedPlan = 120;
-      this.proPlan = 150;
-      this.onlineService = 10;
-      this.storage = 20;
-      this.customProfile = 20;
+    if (isChecked) {
+      selectedMaritalStatus.push(value);
     } else {
-      this.billingPeriod = 'monthly';
-      this.arcadePlan = 9;
-      this.advancedPlan = 12;
-      this.proPlan = 15;
-      this.onlineService = 1;
-      this.storage = 2;
-      this.customProfile = 2;
+      selectedMaritalStatus = selectedMaritalStatus.filter(
+        (status: string) => status !== value
+      );
     }
+
+    currentMaritalStatus.setValue(selectedMaritalStatus);
+  }
+
+  updateavezVousEte(value: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    const currentavezVousEte = this.form.get('avezVousEte') as FormControl;
+    let selectedavezVousEte = currentavezVousEte.value || [];
+
+    if (isChecked) {
+      selectedavezVousEte.push(value);
+    } else {
+      selectedavezVousEte = selectedavezVousEte.filter(
+        (status: string) => status !== value
+      );
+    }
+
+    currentavezVousEte.setValue(selectedavezVousEte);
+  }
+  updateavezVousRencontre(value: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    const currentavezVousRencontre = this.form.get(
+      'avezVousRencontre'
+    ) as FormControl;
+    let selectedavezVousRencontre = currentavezVousRencontre.value || [];
+
+    if (isChecked) {
+      selectedavezVousRencontre.push(value);
+    } else {
+      selectedavezVousRencontre = selectedavezVousRencontre.filter(
+        (status: string) => status !== value
+      );
+    }
+
+    currentavezVousRencontre.setValue(selectedavezVousRencontre);
   }
 
   onSubmit() {
-    this.lastPage = true;
-    this.form.reset();
+    this.documentService.createDocument(this.form.value).subscribe(
+      (response) => {
+        console.log('Document created:', response);
+        this.lastPage = true;
+        this.form.reset();
+      },
+      (error) => {
+        console.error('Error creating document:', error);
+      }
+    );
   }
 
   changePage(isNextPage: boolean) {
-    const addOns =
-      (this.form.get('onlineService')?.value && this.onlineService) +
-      (this.form.get('storage')?.value && this.storage) +
-      (this.form.get('customProfile')?.value && this.customProfile);
-
+    console.log('dqsdqsdqsd', this.form);
     if (!isNextPage) {
       return this.currentStep--;
     } else {

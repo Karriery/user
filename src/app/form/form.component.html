@@ -26,9 +26,12 @@
     >
       <!-- Step 1 -->
       <section *ngIf="currentStep === 1">
-        <h1 class="text-2xl mb-2 font-bold xl:text-3xl">Personal info</h1>
+        <h1 class="text-2xl mb-2 font-bold xl:text-3xl">
+          Environnement personnel
+        </h1>
         <p class="text-neutral-cool-gray mb-5 xl:mb-8">
-          Please provide your name, email address, and phone number.
+          Veuillez fournir votre nom, votre adresse e-mail et votre numéro de
+          téléphone.
         </p>
         <div class="flex flex-col gap-1 text-xs">
           <div class="flex justify-between">
@@ -36,28 +39,28 @@
             <p
               class="text-primary-strawberry-red font-semibold"
               *ngIf="
-                form.controls['name'].invalid &&
-                (form.controls['name'].dirty || form.controls['name'].touched)
+                form.controls['nom'].invalid &&
+                (form.controls['nom'].dirty || form.controls['nom'].touched)
               "
             >
-              This field is required
+              Ce champ est obligatoire
             </p>
           </div>
           <input
             [ngClass]="{
               'border-primary-strawberry-red':
-                form.controls['name'].invalid &&
-                (form.controls['name'].dirty || form.controls['name'].touched)
+                form.controls['nom'].invalid &&
+                (form.controls['nom'].dirty || form.controls['nom'].touched)
             }"
-            formControlName="name"
+            formControlName="nom"
             class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
             type="text"
             required
             placeholder="e.g. cahdi bouzaine"
           />
-          <!--
+
           <div class="flex justify-between mt-2 xl:mt-5">
-            <label class="xl:text-base">Email Address</label>
+            <label class="xl:text-base">Adresse e-mail</label>
             <p
               class="text-primary-strawberry-red font-semibold"
               *ngIf="
@@ -65,7 +68,7 @@
                 (form.controls['email'].dirty || form.controls['email'].touched)
               "
             >
-              This field is required
+              Ce champ est obligatoire
             </p>
           </div>
           <input
@@ -81,285 +84,850 @@
             placeholder="e.g. stephenking@lorem.com"
           />
           <div class="flex justify-between mt-2 xl:mt-5">
-            <label class="xl:text-base">Phone Number</label>
+            <label class="xl:text-base">Numéro de téléphone</label>
             <p
               class="text-primary-strawberry-red font-semibold"
               *ngIf="
-                form.controls['phone'].invalid &&
-                (form.controls['phone'].dirty || form.controls['phone'].touched)
+                form.controls['tel'].invalid &&
+                (form.controls['tel'].dirty || form.controls['tel'].touched)
               "
             >
-              This field is required
+              Ce champ est obligatoire
             </p>
           </div>
           <input
             [ngClass]="{
               'border-primary-strawberry-red':
-                form.controls['phone'].invalid &&
-                (form.controls['phone'].dirty || form.controls['phone'].touched)
+                form.controls['tel'].invalid &&
+                (form.controls['tel'].dirty || form.controls['tel'].touched)
             }"
-            formControlName="phone"
+            formControlName="tel"
             class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
             type="number"
             required
             placeholder="e.g. +1 234 567 890"
-          /> -->
+          />
         </div>
       </section>
 
       <!-- Step 2 -->
 
-      <section *ngIf="currentStep === 2">
-        <h2 class="text-2xl font-bold mb-2 xl:text-3xl">
-          Environnement personel
-        </h2>
-        <p class="text-neutral-cool-gray mb-5 xl:mb-7"></p>
-
-        <ul
-          class="flex flex-col gap-3 xl:flex-col xl:justify-evenly xl:gap-[1.125rem]"
-        >
-          <li
-            class="checkbox-box relative w-full xl:w-[8rem] flex justify-center items-center transition"
-          >
-            <input
-              name="plan"
-              value="arcadePlan"
-              type="radio"
-              id="arcade"
-              [ngClass]="{
-                'h-24 xl:h-[10.375rem]': billingPeriod === 'yearly'
-              }"
-              class="absolute top-0 left-0 w-full h-20 xl:w-[8rem] xl:h-[9.375rem] opacity-0 cursor-pointer"
-              formControlName="plan"
-            />
-            <div
-              class="py-4 px-3 flex gap-3 xl:gap-7 xl:content-between xl:grid w-full h-full transition border rounded-md border-neutral-light-gray"
-            >
-              <img
-                src="assets/images/icon-arcade.svg"
-                class="self-baseline max-w-[2.5rem] xl:max-w-[3.125rem]"
-                alt="arcade icon"
-              />
-              <label for="arcade">
-                <h3 class="font-medium">test</h3>
-                <p class="text-neutral-cool-gray text-sm" id="selectArcade">
-                  ${{ arcadePlan }}/{{
-                    billingPeriod === "monthly" ? "mo" : "yr"
-                  }}
-                </p>
-                <p
-                  *ngIf="billingPeriod === 'yearly'"
-                  class="text-xs mt-[0.125rem]"
-                >
-                  2 months free
-                </p>
+      <section class="mb-8" *ngIf="currentStep === 2">
+        <h2 class="text-lg font-medium mb-3">Environnement personnel</h2>
+        <ul class="grid grid-cols-1 gap-6">
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">civilite</div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="civilite"
+                  value="M"
+                  formControlName="civilite"
+                />
+                <span class="ml-2">Male</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="civilite"
+                  value="F"
+                  formControlName="civilite"
+                />
+                <span class="ml-2">Female</span>
               </label>
             </div>
           </li>
-
-          <li
-            class="checkbox-box relative w-full xl:w-[8rem] flex justify-center items-center transition"
-          >
-            <input
-              name="plan"
-              value="advancedPlan"
-              type="radio"
-              id="advanced"
-              [ngClass]="{
-                'h-24 xl:h-[10.375rem]': billingPeriod === 'yearly'
-              }"
-              class="absolute top-0 left-0 w-full h-20 xl:w-[8rem] xl:h-[9.375rem] opacity-0 cursor-pointer"
-              formControlName="plan"
-            />
-            <div
-              class="py-4 px-3 flex gap-3 xl:gap-7 xl:content-between xl:grid w-full h-full transition border rounded-md border-neutral-light-gray"
-            >
-              <img
-                src="assets/images/icon-advanced.svg"
-                class="self-baseline max-w-[2.5rem] xl:max-w-[3.125rem]"
-                alt="advanced icon"
-              />
-              <label for="advanced">
-                <h3 class="font-medium">Advanced</h3>
-                <p class="text-neutral-cool-gray text-sm" id="selectAdvanced">
-                  ${{ advancedPlan }}/{{
-                    billingPeriod === "monthly" ? "mo" : "yr"
-                  }}
-                </p>
-                <p
-                  *ngIf="billingPeriod === 'yearly'"
-                  class="text-xs mt-[0.125rem]"
-                >
-                  2 months free
-                </p>
-              </label>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Year of Birth
             </div>
-          </li>
-
-          <li
-            class="checkbox-box relative w-full xl:w-[8rem] flex justify-center items-center transition"
-          >
-            <input
-              name="plan"
-              value="proPlan"
-              type="radio"
-              id="pro"
-              [ngClass]="{
-                'h-24 xl:h-[10.375rem]': billingPeriod === 'yearly'
-              }"
-              class="absolute top-0 left-0 w-full h-20 xl:w-[8rem] xl:h-[9.375rem] opacity-0 cursor-pointer"
-              formControlName="plan"
-            />
-
-            <div
-              class="py-4 px-3 flex gap-3 xl:gap-7 xl:content-between xl:grid w-full h-full transition border rounded-md border-neutral-light-gray"
+            <select
+              name="yearOfBirth"
+              id="yearOfBirth"
+              formControlName="yearOfBirth"
             >
-              <img
-                src="assets/images/icon-pro.svg"
-                class="self-baseline max-w-[2.5rem] xl:max-w-[3.125rem]"
-                alt="pro icon"
-              />
-              <label for="pro">
-                <h3 class="font-medium">Pro</h3>
-                <p class="text-neutral-cool-gray text-sm" id="selectPro">
-                  ${{ proPlan }}/{{ billingPeriod === "monthly" ? "mo" : "yr" }}
-                </p>
-                <p
-                  *ngIf="billingPeriod === 'yearly'"
-                  class="text-xs mt-[0.125rem]"
-                >
-                  2 months free
-                </p>
+              <option value="Avant 1957">Avant 1957</option>
+              <option value="1957">1957</option>
+              <option value="1958">1958</option>
+              <option value="1959">1959</option>
+              <option value="1960">1960</option>
+              <option value="1961, avant 31/08">1961, avant 31/08</option>
+              <option value=" 1961, après 31/08">1961, après 31/08</option>
+              <option value="1962">1962</option>
+              <option value="1963">1963</option>
+              <option value="1964">1964</option>
+              <option value="1965">1965</option>
+              <option value="1966">1966</option>
+              <option value="1967">1967</option>
+              <option value="1968, et après">1968, et après</option>
+              <!-- Avant 1957 □1957 □ 1958 □ 1959 □ 1960 □   1961, avant 31/08 □  1961, après 31/08 □
+              1962 □ 1963 □ 1964 □ 1965 □ 1966 □ 1967 □ 1968, et après  □
+              -->
+            </select>
+          </li>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Marital Status
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateMaritalStatus('Célibataire', $event)"
+                />
+                <span class="ml-2">Célibataire</span>
               </label>
+              <!-- Célibataire □
+Veuf □
+Divorcé □
+Marié ou remarié □
+Pacs ou concubinage □-->
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="maritalStatus"
+                  (change)="updateMaritalStatus('Veuf', $event)"
+                />
+                <span class="ml-2">Veuf</span>
+              </label>
+              <!-- Single □, Widowed □, Divorced □, Married or Remarried □, Cohabiting □ -->
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateMaritalStatus('Divorcé', $event)"
+                />
+                <span class="ml-2">Divorcé</span>
+              </label>
+              <!-- Add the rest of the marital status options -->
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateMaritalStatus('Marié ou remarié', $event)"
+                />
+                <span class="ml-2">Marié ou remarié</span>
+              </label>
+              <!-- Add the rest of the marital status options -->
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateMaritalStatus('Pacs ou concubinage', $event)"
+                />
+                <span class="ml-2">Pacs ou concubinage</span>
+              </label>
+              <!-- Add the rest of the marital status options -->
             </div>
           </li>
         </ul>
-
-        <article
-          class="flex gap-5 justify-center mt-5 text-neutral-cool-gray bg-neutral-alabaster py-3 rounded-lg font-medium text-sm xl:mt-10"
-        >
-          <h4
-            [ngClass]="{
-              'text-primary-marine': billingPeriod === 'monthly'
-            }"
-          >
-            Monthly
-          </h4>
-          <label class="inline-flex relative items-center cursor-pointer">
-            <input
-              (change)="changeBillingPeriod()"
-              type="checkbox"
-              class="sr-only peer"
-              formControlName="billingPeriod"
-            />
-            <div
-              class="w-9 h-5 bg-primary-marine peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[0.188rem] after:left-[0.188rem] after:bg-neutral-magnolia after:border-gray-300 after:border after:rounded-full after:h-[0.875rem] after:w-[0.875rem] after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
-            ></div>
-          </label>
-          <h4
-            [ngClass]="{
-              'text-primary-marine': billingPeriod === 'yearly'
-            }"
-          >
-            Yearly
-          </h4>
-        </article>
       </section>
 
       <!-- Step 3 -->
 
-      <section *ngIf="currentStep === 3" class="xl:min-w-[28.125rem]">
-        <h2 class="text-2xl font-bold mb-2 xl:text-3xl">Pick add-ons</h2>
-        <p class="text-neutral-cool-gray mb-5 xl:mb-8">
-          Add-ons help enhance your gaming experience.
-        </p>
-
-        <ul class="w-full mt-16 mb-6 xl:relative xl:left-0">
+      <section class="mb-8" *ngIf="currentStep === 3">
+        <h2 class="text-lg font-medium mb-3">Environnement personnel</h2>
+        <ul class="grid grid-cols-1 gap-6">
           <li>
-            <label class="checkbox-box flex gap-4 items-center">
-              <input
-                formControlName="onlineService"
-                class="relative z-50 left-4 flex justify-center items-center pb-[0.188rem] form-check-input appearance-none h-5 w-5 border border-neutral-light-gray checked:border-primary-purplish-blue rounded-sm bg-neutral-white checked:bg-primary-purplish-blue checked:before:content-link focus:outline-none transition duration-100 cursor-pointer xl:h-4 xl:w-4 xl:left-7"
-                type="checkbox"
-                value="1"
-              />
-              <div
-                class="flex items-center justify-between absolute left-5 right-5 py-3 pl-[3.125rem] pr-4 border border-neutral-light-gray rounded-lg xl:left-0 xl:w-[28.125rem] xl:py-[1.125rem] xl:pr-7 xl:pl-[3.875rem]"
-              >
-                <div>
-                  <h3 class="text-sm font-medium">Online service</h3>
-                  <p class="text-neutral-cool-gray text-xs">
-                    Access to multiplayer games
-                  </p>
-                </div>
-                <span class="text-primary-purplish-blue text-xs"
-                  >+${{ onlineService }}/{{
-                    billingPeriod === "monthly" ? "mo" : "yr"
-                  }}</span
-                >
-              </div>
-            </label>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Nombre d'enfants élevés
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="0"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">0</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="1"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">1</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="2"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">2</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="3"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">3</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="4"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">4</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="5"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">5</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfants"
+                  value="6"
+                  formControlName="nombreDenfants"
+                />
+                <span class="ml-2">6</span>
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Nombre d'enfants élevés
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="IDEM"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">IDEM</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="0"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">0</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="1"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">1</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="2"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">2</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="3"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">3</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="4"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">4</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="5"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">5</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="nombreDenfantsEleves"
+                  value="6"
+                  formControlName="nombreDenfantsEleves"
+                />
+                <span class="ml-2">6</span>
+              </label>
+            </div>
           </li>
 
-          <li class="mt-[3.375rem] xl:mt-[4.375rem]">
-            <label class="checkbox-box flex gap-4 items-center">
-              <input
-                formControlName="storage"
-                class="relative z-50 left-4 flex justify-center items-center pb-[0.188rem] form-check-input appearance-none h-5 w-5 border border-neutral-light-gray checked:border-primary-purplish-blue rounded-sm bg-neutral-white checked:bg-primary-purplish-blue checked:before:content-link focus:outline-none transition duration-100 cursor-pointer xl:h-4 xl:w-4 xl:left-7"
-                type="checkbox"
-                value="2"
-              />
-              <div
-                class="flex items-center justify-between absolute left-5 right-5 py-3 pl-[3.125rem] pr-4 border border-neutral-light-gray rounded-lg xl:left-0 xl:w-[28.125rem] xl:py-[1.125rem] xl:pr-7 xl:pl-[3.875rem]"
-              >
-                <div>
-                  <h3 class="text-sm font-medium">Larger Storage</h3>
-                  <p class="text-neutral-cool-gray text-xs">
-                    Extra 1TB of cloud save
-                  </p>
-                </div>
-
-                <span class="text-primary-purplish-blue text-xs"
-                  >+${{ storage }}/{{
-                    billingPeriod === "monthly" ? "mo" : "yr"
-                  }}</span
-                >
-              </div>
-            </label>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Etude supérieure
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="etudeSuperieure"
+                  value="oui"
+                  formControlName="etudeSuperieure"
+                />
+                <span class="ml-2">oui</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="etudeSuperieure"
+                  value="non"
+                  formControlName="etudeSuperieure"
+                />
+                <span class="ml-2">non</span>
+              </label>
+              <!-- Single □, Widowed □, Divorced □, Married or Remarried □, Cohabiting □ -->
+            </div>
           </li>
-
-          <li class="mt-[3.375rem] xl:mt-[4.375rem]">
-            <label class="checkbox-box flex gap-4 items-center">
-              <input
-                formControlName="customProfile"
-                class="relative z-50 left-4 flex justify-center items-center pb-[0.188rem] form-check-input appearance-none h-5 w-5 border border-neutral-light-gray checked:border-primary-purplish-blue rounded-sm bg-neutral-white checked:bg-primary-purplish-blue checked:before:content-link focus:outline-none transition duration-100 cursor-pointer xl:h-4 xl:w-4 xl:left-7"
-                type="checkbox"
-                value="2"
-              />
-              <div
-                class="flex items-center justify-between absolute left-5 right-5 py-3 pl-[3.125rem] pr-4 border border-neutral-light-gray rounded-lg xl:left-0 xl:w-[28.125rem] xl:py-[1.125rem] xl:pr-7 xl:pl-[3.875rem]"
-              >
-                <div>
-                  <h3 class="text-sm font-medium">Customizable Profile</h3>
-                  <p class="text-neutral-cool-gray text-xs">
-                    Custom theme on your profile
-                  </p>
-                </div>
-
-                <span class="text-primary-purplish-blue text-xs"
-                  >+${{ customProfile }}/{{
-                    billingPeriod === "monthly" ? "mo" : "yr"
-                  }}</span
-                >
-              </div>
-            </label>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Age souhaité de départ
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="62"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">62</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="63"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">63</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="64"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">64</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="65"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">65</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="66"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">66</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="67"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">67</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="ageSouhaiteDeDepart"
+                  value="Dès que possible"
+                  formControlName="ageSouhaiteDeDepart"
+                />
+                <span class="ml-2">Dès que possible</span>
+              </label>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!-- Step 4 -->
+      <section class="mb-8" *ngIf="currentStep === 4">
+        <h2 class="text-lg font-medium mb-3">Carrière professionnelle</h2>
+        <ul class="grid grid-cols-1 gap-6">
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Age de début d'activité professionnelle
+            </div>
+            <select
+              name="ageDuDebutdactiviteProfessionnelle"
+              id="ageDuDebutdactiviteProfessionnelle"
+              formControlName="ageDuDebutdactiviteProfessionnelle"
+            >
+              <option value="5">Avant 16 ans</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+            </select>
+          </li>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Dans votre carrière avez-vous été dans une ou plusieurs de ces
+              situations?
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte('Salarié du secteur privé', $event)
+                  "
+                />
+                <span class="ml-2">Salarié du secteur privé</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="maritalStatus"
+                  (change)="
+                    updateavezVousEte('Avec changement demployeur', $event)
+                  "
+                />
+                <span class="ml-2">Avec changement d'employeur</span>
+              </label>
+              <!--Salarié du secteur privé □
+Avec changement d'employeur □
+Salarié statut spécial (Ratp, SNCF…) □
+Agent de l'Etat □
+Travailleur non salarié  (indépendant) □
+Profession libérale □
+Cotisation > minimum □
+Si Prof. Médicale ; conventionné □
+Fonctionnaire □
+Travail à l'étranger □
+Plusieurs régimes en même temps □
+Apprentissage, job étudiants ? □
+Service militaire effectué  □ -->
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte(
+                      'Salarié statut spécial (Ratp, SNCF…)',
+                      $event
+                    )
+                  "
+                />
+                <span class="ml-2">Salarié statut spécial (Ratp, SNCF…)</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousEte('Agent de lEtat', $event)"
+                />
+                <span class="ml-2">Agent de l'Etat</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte(
+                      'Travailleur non salarié  (indépendant)',
+                      $event
+                    )
+                  "
+                />
+                <span class="ml-2">Travailleur non salarié (indépendant)</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousEte('Profession libérale', $event)"
+                />
+                <span class="ml-2">Profession libérale</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousEte('Cotisation > minimum', $event)"
+                />
+                <span class="ml-2">Cotisation > minimum</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte(
+                      'Si Prof. Médicale ; conventionné',
+                      $event
+                    )
+                  "
+                />
+                <span class="ml-2">Si Prof. Médicale ; conventionné</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousEte('Fonctionnaire', $event)"
+                />
+                <span class="ml-2">Fonctionnaire</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousEte('Travail à létranger', $event)"
+                />
+                <span class="ml-2">Travail à l'étranger</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte('Plusieurs régimes en même temps', $event)
+                  "
+                />
+                <span class="ml-2">Plusieurs régimes en même temps</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte('Apprentissage, job étudiants ?', $event)
+                  "
+                />
+                <span class="ml-2">Apprentissage, job étudiants ?</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousEte('Service militaire effectué', $event)
+                  "
+                />
+                <span class="ml-2">Service militaire effectué</span>
+              </label>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!-- Step 5 -->
+      <section class="mb-8" *ngIf="currentStep === 5">
+        <h2 class="text-lg font-medium mb-3">Situation de non cotisation</h2>
+        <ul class="grid grid-cols-1 gap-6">
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Avez-vous rencontré une ou plusieurs de ces situations?
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousRencontre('Arrêt maladie > 1 mois', $event)
+                  "
+                />
+                <span class="ml-2">Arrêt maladie > 1 mois</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="maritalStatus"
+                  (change)="
+                    updateavezVousRencontre('Arrêt accident du travail', $event)
+                  "
+                />
+                <span class="ml-2">Arrêt accident du travail</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousRencontre('Invalidité', $event)"
+                />
+                <span class="ml-2">Invalidité</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousRencontre('Chômage', $event)"
+                />
+                <span class="ml-2">Chômage</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="
+                    updateavezVousRencontre(
+                      'Congéz parental, dassistance…',
+                      $event
+                    )
+                  "
+                />
+                <span class="ml-2">Congéz parental, d'assistance…</span>
+              </label>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!-- Step 6 -->
+      <section class="mb-8" *ngIf="currentStep === 6">
+        <h2 class="text-lg font-medium mb-3">Rémunération</h2>
+        <ul class="grid grid-cols-1 gap-6">
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Niveau actuel (net annuel avant impôts) ?
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="niveauActuel"
+                  value="&lt;30k€"
+                  formControlName="niveauActuel"
+                />
+                <span class="ml-2"> &lt;30k€ </span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="niveauActuel"
+                  value="30 à 80 k€"
+                  formControlName="niveauActuel"
+                />
+                <span class="ml-2"> 30 à 80 k€</span>
+              </label>
+              <!--  <30k€  □  30 à 80 k€  □ > 80k€  □ -->
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="niveauActuel"
+                  value=" &gt;80k€"
+                  formControlName="niveauActuel"
+                />
+                <span class="ml-2"> &gt;80 k€</span>
+              </label>
+              <!--  <30k€  □  30 à 80 k€  □ > 80k€  □ -->
+            </div>
+          </li>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              Son évolution durant la carrière?
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="evolution"
+                  value="Croissante"
+                  formControlName="evolution"
+                />
+                <span class="ml-2"> Croissante </span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="evolution"
+                  value="Plutôt décroissante"
+                  formControlName="evolution"
+                />
+                <span class="ml-2"> Plutôt décroissante</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="evolution"
+                  value=" Constante , suit l'inflation"
+                  formControlName="evolution"
+                />
+                <span class="ml-2"> Constante , suit l'inflation</span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="evolution"
+                  value="Irrégulière"
+                  formControlName="evolution"
+                />
+                <span class="ml-2"> Irrégulière </span>
+              </label>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <!-- Step 7 -->
+      <section class="mb-8" *ngIf="currentStep === 7">
+        <h2 class="text-lg font-medium mb-3">
+          Eventuels suppléments de retraite déjà souscrits
+        </h2>
+        <ul class="grid grid-cols-1 gap-6">
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              A titre individuel (PER, assurance vie…)
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="titreIndividuel"
+                  value="oui"
+                  formControlName="titreIndividuel"
+                />
+                <span class="ml-2"> oui </span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="titreIndividuel"
+                  value="non"
+                  formControlName="titreIndividuel"
+                />
+                <span class="ml-2">non</span>
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              A titre professionnel obligatoire (PERO...)
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="titreProfessionnelObligatoire"
+                  value="oui"
+                  formControlName="titreProfessionnelObligatoire"
+                />
+                <span class="ml-2"> oui </span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="titreProfessionnelObligatoire"
+                  value="non"
+                  formControlName="titreProfessionnelObligatoire"
+                />
+                <span class="ml-2">non</span>
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="text-neutral-cool-gray font-medium mb-1">
+              A titre professionnel facultatif (PERCO, Madelin...)
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="titreProfessionnelFacultatif"
+                  value="oui"
+                  formControlName="titreProfessionnelFacultatif"
+                />
+                <span class="ml-2"> oui </span>
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="titreProfessionnelFacultatif"
+                  value="non"
+                  formControlName="titreProfessionnelFacultatif"
+                />
+                <span class="ml-2">non</span>
+              </label>
+            </div>
           </li>
         </ul>
       </section>
 
       <!-- Summary -->
       <section
-        *ngIf="currentStep === 4 && !lastPage"
+        *ngIf="currentStep === 8 && !lastPage"
         class="xl:min-w-[26.25rem]"
       >
         <h2 class="text-2xl font-bold mb-2 xl:text-3xl">Finishing up</h2>
@@ -370,99 +938,45 @@
         <article
           class="bg-neutral-alabaster py-5 px-4 text-sm rounded-lg xl:text-base"
         >
-          <div class="flex justify-between items-center">
-            <div
-              [ngClass]="{
-                'mb-3':
-                  form.get('onlineService')?.value ||
-                  form.get('storage')?.value ||
-                  form.get('customProfile')?.value
-              }"
-            >
-              <h3 class="text-primary-marine font-medium">
-                {{
-                  form.get("plan")?.value === "arcadePlan"
-                    ? "Arcade"
-                    : form.get("plan")?.value === "advancedPlan"
-                    ? "Advanced"
-                    : "Pro"
-                }}
-                ({{ billingPeriod === "monthly" ? "Monthly" : "Yearly" }})
-              </h3>
-              <a
-                href="#"
-                type="button"
-                class="underline text-neutral-cool-gray hover:text-primary-purplish-blue"
-                >Change</a
-              >
-            </div>
-            <p class="text-primary-marine font-bold" id="sumArcade">
-              ${{
-                form.get("plan")?.value === "arcadePlan"
-                  ? arcadePlan
-                  : form.get("plan")?.value === "advancedPlan"
-                  ? advancedPlan
-                  : proPlan
-              }}/{{ billingPeriod === "monthly" ? "mo" : "yr" }}
+          <div class="flex flex-col justify-between items-center">
+            <p class="text-primary-marine font-bold" id="sumArcade"></p>
+            <p>nom: {{ form.get("nom")?.value }}</p>
+            <p>Email: {{ form.get("email")?.value }}</p>
+            <p>tel: {{ form.get("tel")?.value }}</p>
+            <p>civilite: {{ form.get("civilite")?.value }}</p>
+            <p>Year of Birth: {{ form.get("yearOfBirth")?.value }}</p>
+            <p>Marital Status: {{ form.get("maritalStatus")?.value }}</p>
+            <p>Avez-vous Ete: {{ form.get("avezVousEte")?.value }}</p>
+            <p>
+              Avez-vous Rencontre: {{ form.get("avezVousRencontre")?.value }}
+            </p>
+            <p>Number of Children: {{ form.get("nombreDenfants")?.value }}</p>
+            <p>
+              Number of Children Students:
+              {{ form.get("nombreDenfantsEleves")?.value }}
+            </p>
+            <p>Higher Studies: {{ form.get("etudeSuperieure")?.value }}</p>
+            <p>
+              Desired Age of Departure:
+              {{ form.get("ageSouhaiteDeDepart")?.value }}
+            </p>
+            <p>
+              Age at the Start of Professional Activity:
+              {{ form.get("ageDuDebutdactiviteProfessionnelle")?.value }}
+            </p>
+            <p>Current Level: {{ form.get("niveauActuel")?.value }}</p>
+            <p>Evolution: {{ form.get("evolution")?.value }}</p>
+            <p>Individual Title: {{ form.get("titreIndividuel")?.value }}</p>
+            <p>
+              Optional Professional Title:
+              {{ form.get("titreProfessionnelFacultatif")?.value }}
+            </p>
+            <p>
+              Mandatory Professional Title:
+              {{ form.get("titreProfessionnelObligatoire")?.value }}
             </p>
           </div>
-          <hr
-            *ngIf="
-              form.get('onlineService')?.value ||
-              form.get('storage')?.value ||
-              form.get('customProfile')?.value
-            "
-            class="text-neutral-cool-gray"
-          />
-          <ul
-            [ngClass]="{
-              'mt-3':
-                form.get('onlineService')?.value ||
-                form.get('storage')?.value ||
-                form.get('customProfile')?.value
-            }"
-            class="text-neutral-cool-gray flex flex-col gap-2"
-          >
-            <li
-              *ngIf="form.get('onlineService')?.value"
-              class="flex justify-between"
-            >
-              <p>Online service</p>
-              <p class="text-primary-marine" id="sumArcade">
-                +${{ onlineService }}/{{
-                  billingPeriod === "monthly" ? "mo" : "yr"
-                }}
-              </p>
-            </li>
-            <li *ngIf="form.get('storage')?.value" class="flex justify-between">
-              <p>Larger storage</p>
-              <p class="text-primary-marine" id="sumArcade">
-                +${{ storage }}/{{ billingPeriod === "monthly" ? "mo" : "yr" }}
-              </p>
-            </li>
-            <li
-              *ngIf="form.get('customProfile')?.value"
-              class="flex justify-between"
-            >
-              <p>Customizable Profile</p>
-              <p class="text-primary-marine" id="sumArcade">
-                +${{ customProfile }}/{{
-                  billingPeriod === "monthly" ? "mo" : "yr"
-                }}
-              </p>
-            </li>
-          </ul>
         </article>
-
-        <div class="flex justify-between items-center py-5 px-4">
-          <h3 class="text-neutral-cool-gray text-sm xl:text-base">
-            Total (per {{ billingPeriod === "monthly" ? "month" : "year" }})
-          </h3>
-
-          <p class="text-primary-purplish-blue font-bold xl:text-lg">
-            ${{ total }}/{{ billingPeriod === "monthly" ? "mo" : "yr" }}
-          </p>
-        </div>
       </section>
 
       <!-- Thank you -->
@@ -477,8 +991,9 @@
         />
         <h2 class="text-2xl font-bold mb-2 xl:text-4xl">Thank you!</h2>
         <p class="text-neutral-cool-gray mb-3">
-          Thanks for confirming your subscription! We hope you have fun using
-          our platform. If you ever need support, please feel free to email us
+          Merci d'avoir confirmé votre abonnement ! Nous espérons que vous aurez
+          du plaisir à utiliser notre plateforme. Si jamais vous avez besoin
+          d'aide, n'hésitez pas à nous envoyer un e-mail
         </p>
       </section>
 
@@ -494,23 +1009,23 @@
           type="button"
           class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine"
         >
-          Go Back
+          Retourner
         </button>
         <button
           [disabled]="form.invalid"
-          *ngIf="currentStep !== 4"
+          *ngIf="currentStep !== 8"
           (click)="changePage(true)"
           type="button"
           class="bg-primary-marine text-neutral-magnolia px-5 py-2 rounded disabled:bg-neutral-cool-gray hover:bg-opacity-90 xl:px-7 xl:py-3 xl:rounded-lg"
         >
-          Next Step
+          L'étape suivante
         </button>
         <button
-          *ngIf="currentStep === 4"
+          *ngIf="currentStep === 8"
           type="submit"
           class="bg-primary-purplish-blue text-neutral-magnolia px-6 py-[0.625rem] rounded hover:bg-opacity-90 xl:px-7 xl:py-3 xl:rounded-lg"
         >
-          Confirm
+          Confirmer
         </button>
       </nav>
     </div>

@@ -15,7 +15,7 @@ export class StepperComponent implements OnInit {
   @Input()
   currentStep!: number;
 
-  steps = [1, 2, 3, 4];
+  steps = [1, 2, 3, 4, 5, 6, 7, 8];
 
   ngOnInit(): void {}
 }

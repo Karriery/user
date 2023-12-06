@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { BookcallComponent } from './bookcall/bookcall.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BookcallComponent,
     StepperComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
