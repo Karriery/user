@@ -1,29 +1,66 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,ts}"],
+  plugins: [require("flowbite/plugin")],
+  content: [
+    "./src/**/*.{html,ts}",
+    "./node_modules/flowbite/**/*.js", // add this line
+  ],
   theme: {
-    colors: {
-      primary: {
-        marine: "hsl(213, 96%, 18%)",
-        "purplish-blue": "hsl(243, 100%, 62%)",
-        "pastel-blue": "hsl(228, 100%, 84%)",
-        "light-blue": "hsl(206, 94%, 87%)",
-        "strawberry-red": "hsl(354, 84%, 57%)",
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: {
+            50: "#eff6ff",
+            100: "#dbeafe",
+            200: "#bfdbfe",
+            300: "#93c5fd",
+            400: "#60a5fa",
+            500: "#3b82f6",
+            600: "#2563eb",
+            700: "#1d4ed8",
+            800: "#1e40af",
+            900: "#1e3a8a",
+            950: "#172554",
+          },
+        },
       },
-      neutral: {
-        "cool-gray": "hsl(231, 11%, 63%)",
-        "light-gray": "hsl(229, 24%, 87%)",
-        magnolia: "hsl(217, 100%, 97%)",
-        alabaster: "hsl(231, 100%, 99%)",
-        white: "hsl(0, 0%, 100%)",
+      fontFamily: {
+        body: [
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "system-ui",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
+        sans: [
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "system-ui",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
       },
-    },
-    content: {
-      link: 'url("assets/images/icon-checkmark.svg")',
-    },
-    screens: {
-      xs: "375px",
-      xl: "1440px",
     },
   },
 };

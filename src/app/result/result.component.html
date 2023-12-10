@@ -1,1 +1,85 @@
-<p>result works!</p>
+<div class="results">
+  <div class="box">
+    <div class="top">
+      <img
+        *ngIf="document?.risqueTrimestre"
+        [src]="formatImageUrl(document?.risqueTrimestre.status)"
+        alt=""
+      />
+      <h2>Risques sur les trimetres</h2>
+    </div>
+    <div class="body" *ngIf="document?.risqueTrimestre">
+      {{ document?.risqueTrimestre.text }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      <img
+        *ngIf="document?.risqueComp"
+        [src]="formatImageUrl(document?.risqueComp.status)"
+        alt=""
+      />
+      <h2>Risques sur les régimes complémentaires</h2>
+    </div>
+    <div class="body" *ngIf="document?.risqueComp">
+      {{ document?.risqueComp.text }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      <img
+        *ngIf="document?.risqueSup"
+        [src]="formatImageUrl(document?.risqueSup.status)"
+        alt=""
+      />
+      <h2>Risques sur les régimes supplémentaires</h2>
+    </div>
+    <div class="body" *ngIf="document?.risqueSup">
+      {{ document?.risqueSup.text }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      <img src="../../assets/images/nuage.png" alt="" />
+      <h2>Risques sur l'âge de départ Teeest</h2>
+    </div>
+    <div class="body">
+      C'est just pour test
+      <!-- {{ document?.risqueTraindevie.text }} -->
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur ex
+      nostrum, blanditiis maxime cum molestias numquam voluptatibus est
+      praesentium soluta, quis obcaecati, quas ipsa doloremque quia repudiandae
+      dolorum autem ipsum!
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      <img
+        *ngIf="document?.risqueTraindevie"
+        [src]="formatImageUrl(document?.risqueTraindevie.status)"
+        alt=""
+      />
+      <h2>Risques train de vie</h2>
+    </div>
+    <div class="body" *ngIf="document?.risqueTraindevie">
+      {{ document?.risqueTraindevie.text }}
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      <img
+        *ngIf="document?.risqueReversion"
+        [src]="formatImageUrl(document?.risqueReversion.status)"
+        alt=""
+      />
+      <h2>Risques réversion</h2>
+    </div>
+    <div class="body" *ngIf="document?.risqueReversion">
+      {{ document?.risqueReversion.text }}
+    </div>
+  </div>
+</div>
+
+<div class="book">
+  <div class="btn custom" (click)="bookCall()">Reservez un Rendez-Vous</div>
+</div>

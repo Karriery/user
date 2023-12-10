@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DocumentService } from '../services/document.service';
 @Component({
   selector: 'app-form',
@@ -33,7 +34,8 @@ export class FormComponent {
   total = 9;
   constructor(
     private formBuilder: FormBuilder,
-    private documentService: DocumentService
+    private documentService: DocumentService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,13 +54,12 @@ export class FormComponent {
       ]),
 
       civilite: new FormControl(null),
-      yearOfBirth: new FormControl(null),
+      anneDeNaissance: new FormControl(null),
       situationFamiliale: this.formBuilder.control([]),
       avezVousEte: this.formBuilder.control([]),
       avezVousRencontre: this.formBuilder.control([]),
 
       nombreDenfants: new FormControl(null),
-
       nombreDenfantsEleves: new FormControl(null),
       etudeSuperieure: new FormControl(null),
       ageSouhaiteDeDepart: new FormControl(null),
@@ -124,9 +125,9 @@ export class FormComponent {
   onSubmit() {
     this.documentService.createDocument(this.form.value).subscribe(
       (response) => {
-        console.log('Document created:', response);
-        this.lastPage = true;
-        this.form.reset();
+        this.router.navigate(['/result'], {
+          queryParams: { id: response._id },
+        });
       },
       (error) => {
         console.error('Error creating document:', error);

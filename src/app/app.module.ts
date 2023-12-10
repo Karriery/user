@@ -10,6 +10,7 @@ import { BookcallComponent } from './bookcall/bookcall.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FullCalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

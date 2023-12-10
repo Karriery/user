@@ -1,11 +1,15 @@
 <div class="flex justify-center">
-  <picture class="absolute -z-[1] top-0 left-0 w-full xl:hidden">
+  <picture
+    class="absolute -z-[1] top-0 left-0 w-full xl:hidden"
+    style="background-color: white"
+  >
     <img src="assets/images/login.png" alt="background image" width="100%" />
   </picture>
   <app-stepper [currentStep]="currentStep" class="xl:hidden"></app-stepper>
   <form
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
+    style="background-color: white"
     class="absolute top-[6.25rem] rounded-lg bg-neutral-white py-8 px-6 mx-5 xl:flex xl:w-[65%] xl:p-7"
   >
     <app-stepper
@@ -122,10 +126,10 @@
                 <input
                   type="radio"
                   name="civilite"
-                  value="M"
+                  value="H"
                   formControlName="civilite"
                 />
-                <span class="ml-2">Male</span>
+                <span class="ml-2">Homme</span>
               </label>
               <label class="flex items-center cursor-pointer">
                 <input
@@ -134,7 +138,7 @@
                   value="F"
                   formControlName="civilite"
                 />
-                <span class="ml-2">Female</span>
+                <span class="ml-2">Femme</span>
               </label>
             </div>
           </li>
@@ -143,9 +147,9 @@
               Year of Birth
             </div>
             <select
-              name="yearOfBirth"
-              id="yearOfBirth"
-              formControlName="yearOfBirth"
+              name="anneDeNaissance"
+              id="anneDeNaissance"
+              formControlName="anneDeNaissance"
             >
               <option value="Avant 1957">Avant 1957</option>
               <option value="1957">1957</option>
@@ -153,7 +157,7 @@
               <option value="1959">1959</option>
               <option value="1960">1960</option>
               <option value="1961, avant 31/08">1961, avant 31/08</option>
-              <option value=" 1961, après 31/08">1961, après 31/08</option>
+              <option value="1961, après 31/08">1961, après 31/08</option>
               <option value="1962">1962</option>
               <option value="1963">1963</option>
               <option value="1964">1964</option>
@@ -944,7 +948,7 @@ Service militaire effectué  □ -->
             <p>Email: {{ form.get("email")?.value }}</p>
             <p>tel: {{ form.get("tel")?.value }}</p>
             <p>civilite: {{ form.get("civilite")?.value }}</p>
-            <p>Year of Birth: {{ form.get("yearOfBirth")?.value }}</p>
+            <p>Year of Birth: {{ form.get("anneDeNaissance")?.value }}</p>
             <p>Marital Status: {{ form.get("maritalStatus")?.value }}</p>
             <p>Avez-vous Ete: {{ form.get("avezVousEte")?.value }}</p>
             <p>
@@ -983,19 +987,7 @@ Service militaire effectué  □ -->
       <section
         class="flex flex-col py-14 items-center text-center xl:mt-16"
         *ngIf="lastPage"
-      >
-        <img
-          class="w-14 mb-6 xl:w-[5.25rem] xl:mb-8"
-          src="assets/images/icon-thank-you.svg"
-          alt=""
-        />
-        <h2 class="text-2xl font-bold mb-2 xl:text-4xl">Thank you!</h2>
-        <p class="text-neutral-cool-gray mb-3">
-          Merci d'avoir confirmé votre abonnement ! Nous espérons que vous aurez
-          du plaisir à utiliser notre plateforme. Si jamais vous avez besoin
-          d'aide, n'hésitez pas à nous envoyer un e-mail
-        </p>
-      </section>
+      ></section>
 
       <!-- Nav -->
       <nav
@@ -1017,6 +1009,7 @@ Service militaire effectué  □ -->
           (click)="changePage(true)"
           type="button"
           class="bg-primary-marine text-neutral-magnolia px-5 py-2 rounded disabled:bg-neutral-cool-gray hover:bg-opacity-90 xl:px-7 xl:py-3 xl:rounded-lg"
+          style="background-color: rgb(144, 0, 255); color: white"
         >
           L'étape suivante
         </button>
