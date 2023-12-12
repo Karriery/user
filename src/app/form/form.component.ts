@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DocumentService } from '../services/document.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -58,7 +59,6 @@ export class FormComponent {
       situationFamiliale: this.formBuilder.control([]),
       avezVousEte: this.formBuilder.control([]),
       avezVousRencontre: this.formBuilder.control([]),
-
       nombreDenfants: new FormControl(null),
       nombreDenfantsEleves: new FormControl(null),
       etudeSuperieure: new FormControl(null),
@@ -140,9 +140,92 @@ export class FormComponent {
     if (!isNextPage) {
       return this.currentStep--;
     } else {
-      if (this.currentStep === 3) {
+      if (this.currentStep === 1) {
+        return this.currentStep++;
       }
-      return this.currentStep++;
+      if (this.currentStep === 2) {
+        if (
+          this.form.value.civilite !== null &&
+          this.form.value.anneDeNaissance !== null &&
+          this.form.value.situationFamiliale.length
+        ) {
+          return this.currentStep++;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
+      }
+      if (this.currentStep === 3) {
+        if (
+          this.form.value.nombreDenfants !== null &&
+          this.form.value.nombreDenfantsEleves !== null &&
+          this.form.value.etudeSuperieure !== null &&
+          this.form.value.ageSouhaiteDeDepart !== null
+        ) {
+          return this.currentStep++;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
+      }
+      if (this.currentStep === 4) {
+        if (
+          this.form.value.ageDuDebutdactiviteProfessionnelle !== null &&
+          this.form.value.avezVousEte.length
+        ) {
+          return this.currentStep++;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
+      }
+      if (this.currentStep === 5) {
+        if (this.form.value.avezVousRencontre.length) {
+          return this.currentStep++;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
+      }
+      if (this.currentStep === 6) {
+        if (
+          this.form.value.niveauActuel !== null &&
+          this.form.value.evolution !== null
+        ) {
+          return this.currentStep++;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
+      }
+      if (this.currentStep === 7) {
+        if (
+          this.form.value.titreIndividuel !== null &&
+          this.form.value.titreProfessionnelObligatoire !== null &&
+          this.form.value.titreProfessionnelFacultatif !== null
+        ) {
+          return this.currentStep++;
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
+      }
+      if (this.currentStep === 8) {
+        return this.currentStep++;
+      }
+      return this.currentStep;
     }
   }
 }

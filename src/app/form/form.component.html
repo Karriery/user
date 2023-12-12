@@ -1,9 +1,8 @@
-<div class="flex justify-center">
+<div class="flex justify-center" *ngIf="currentStep !== 8">
   <picture
     class="absolute -z-[1] top-0 left-0 w-full xl:hidden"
     style="background-color: white"
   >
-    <img src="assets/images/login.png" alt="background image" width="100%" />
   </picture>
   <app-stepper [currentStep]="currentStep" class="xl:hidden"></app-stepper>
   <form
@@ -30,22 +29,25 @@
     >
       <!-- Step 1 -->
       <section *ngIf="currentStep === 1">
-        <h1 class="text-2xl mb-2 font-bold xl:text-3xl">
-          Environnement personnel
-        </h1>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <p class="text-neutral-cool-gray mb-5 xl:mb-8">
           Veuillez fournir votre nom, votre adresse e-mail et votre numéro de
           téléphone.
         </p>
         <div class="flex flex-col gap-1 text-xs">
           <div class="flex justify-between">
-            <label class="xl:text-base">Nom</label>
+            <label class="xl:text-base">Nom &amp; Prénom</label>
             <p
               class="text-primary-strawberry-red font-semibold"
               *ngIf="
                 form.controls['nom'].invalid &&
                 (form.controls['nom'].dirty || form.controls['nom'].touched)
               "
+              style="color: red"
             >
               Ce champ est obligatoire
             </p>
@@ -60,19 +62,20 @@
             class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
             type="text"
             required
-            placeholder="e.g. cahdi bouzaine"
+            placeholder="ex. Pierre Dupont"
           />
 
           <div class="flex justify-between mt-2 xl:mt-5">
             <label class="xl:text-base">Adresse e-mail</label>
             <p
               class="text-primary-strawberry-red font-semibold"
+              style="color: red"
               *ngIf="
                 form.controls['email'].invalid &&
                 (form.controls['email'].dirty || form.controls['email'].touched)
               "
             >
-              Ce champ est obligatoire
+              E-mail invalide
             </p>
           </div>
           <input
@@ -85,7 +88,7 @@
             class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
             type="email"
             required
-            placeholder="e.g. stephenking@lorem.com"
+            placeholder="ex. pierredupont@gmail.fr"
           />
           <div class="flex justify-between mt-2 xl:mt-5">
             <label class="xl:text-base">Numéro de téléphone</label>
@@ -95,8 +98,9 @@
                 form.controls['tel'].invalid &&
                 (form.controls['tel'].dirty || form.controls['tel'].touched)
               "
+              style="color: red"
             >
-              Ce champ est obligatoire
+              Numéro de téléphone invalide
             </p>
           </div>
           <input
@@ -109,7 +113,7 @@
             class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
             type="number"
             required
-            placeholder="e.g. +1 234 567 890"
+            placeholder="ex. +33 09 67 40 04 53"
           />
         </div>
       </section>
@@ -117,10 +121,14 @@
       <!-- Step 2 -->
 
       <section class="mb-8" *ngIf="currentStep === 2">
-        <h2 class="text-lg font-medium mb-3">Environnement personnel</h2>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <ul class="grid grid-cols-1 gap-6">
           <li>
-            <div class="text-neutral-cool-gray font-medium mb-1">civilite</div>
+            <div class="text-neutral-cool-gray font-medium mb-1">Civilité</div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
                 <input
@@ -141,10 +149,21 @@
                 <span class="ml-2">Femme</span>
               </label>
             </div>
+            <p
+              class="text-primary-strawberry-red font-semibold"
+              style="color: red"
+              *ngIf="
+                form.controls['civilite'].invalid &&
+                (form.controls['civilite'].dirty ||
+                  form.controls['civilite'].touched)
+              "
+            >
+              Civilité invalide
+            </p>
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Year of Birth
+              Année de naissance
             </div>
             <select
               name="anneDeNaissance"
@@ -169,10 +188,21 @@
               1962 □ 1963 □ 1964 □ 1965 □ 1966 □ 1967 □ 1968, et après  □
               -->
             </select>
+            <p
+              class="text-primary-strawberry-red font-semibold"
+              style="color: red"
+              *ngIf="
+                form.controls['anneDeNaissance'].invalid &&
+                (form.controls['anneDeNaissance'].dirty ||
+                  form.controls['anneDeNaissance'].touched)
+              "
+            >
+              Année de naissance invalide
+            </p>
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Marital Status
+              Situation familiale
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -182,11 +212,6 @@
                 />
                 <span class="ml-2">Célibataire</span>
               </label>
-              <!-- Célibataire □
-Veuf □
-Divorcé □
-Marié ou remarié □
-Pacs ou concubinage □-->
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -197,7 +222,6 @@ Pacs ou concubinage □-->
                 />
                 <span class="ml-2">Veuf</span>
               </label>
-              <!-- Single □, Widowed □, Divorced □, Married or Remarried □, Cohabiting □ -->
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -236,11 +260,15 @@ Pacs ou concubinage □-->
       <!-- Step 3 -->
 
       <section class="mb-8" *ngIf="currentStep === 3">
-        <h2 class="text-lg font-medium mb-3">Environnement personnel</h2>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Nombre d'enfants élevés
+              Nombre d&#39;enfants eus ou adoptés
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -313,15 +341,6 @@ Pacs ou concubinage □-->
               Nombre d'enfants élevés
             </div>
             <div class="flex gap-3">
-              <label class="flex items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="nombreDenfantsEleves"
-                  value="IDEM"
-                  formControlName="nombreDenfantsEleves"
-                />
-                <span class="ml-2">IDEM</span>
-              </label>
               <label class="flex items-center cursor-pointer">
                 <input
                   type="radio"
@@ -490,7 +509,11 @@ Pacs ou concubinage □-->
       </section>
       <!-- Step 4 -->
       <section class="mb-8" *ngIf="currentStep === 4">
-        <h2 class="text-lg font-medium mb-3">Carrière professionnelle</h2>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
@@ -680,7 +703,11 @@ Service militaire effectué  □ -->
       </section>
       <!-- Step 5 -->
       <section class="mb-8" *ngIf="currentStep === 5">
-        <h2 class="text-lg font-medium mb-3">Situation de non cotisation</h2>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
@@ -746,7 +773,11 @@ Service militaire effectué  □ -->
       </section>
       <!-- Step 6 -->
       <section class="mb-8" *ngIf="currentStep === 6">
-        <h2 class="text-lg font-medium mb-3">Rémunération</h2>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
@@ -841,9 +872,11 @@ Service militaire effectué  □ -->
       </section>
       <!-- Step 7 -->
       <section class="mb-8" *ngIf="currentStep === 7">
-        <h2 class="text-lg font-medium mb-3">
-          Eventuels suppléments de retraite déjà souscrits
-        </h2>
+        <img
+          src="../../assets/images/LOGO LCDP_RVB.png"
+          style="width: 200px; margin-bottom: 20px"
+          alt=""
+        />
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
@@ -930,58 +963,6 @@ Service militaire effectué  □ -->
       </section>
 
       <!-- Summary -->
-      <section
-        *ngIf="currentStep === 8 && !lastPage"
-        class="xl:min-w-[26.25rem]"
-      >
-        <h2 class="text-2xl font-bold mb-2 xl:text-3xl">Finishing up</h2>
-        <p class="text-neutral-cool-gray mb-5 xl:mb-8">
-          Double-check everything looks OK before confirming.
-        </p>
-
-        <article
-          class="bg-neutral-alabaster py-5 px-4 text-sm rounded-lg xl:text-base"
-        >
-          <div class="flex flex-col justify-between items-center">
-            <p class="text-primary-marine font-bold" id="sumArcade"></p>
-            <p>nom: {{ form.get("nom")?.value }}</p>
-            <p>Email: {{ form.get("email")?.value }}</p>
-            <p>tel: {{ form.get("tel")?.value }}</p>
-            <p>civilite: {{ form.get("civilite")?.value }}</p>
-            <p>Year of Birth: {{ form.get("anneDeNaissance")?.value }}</p>
-            <p>Marital Status: {{ form.get("maritalStatus")?.value }}</p>
-            <p>Avez-vous Ete: {{ form.get("avezVousEte")?.value }}</p>
-            <p>
-              Avez-vous Rencontre: {{ form.get("avezVousRencontre")?.value }}
-            </p>
-            <p>Number of Children: {{ form.get("nombreDenfants")?.value }}</p>
-            <p>
-              Number of Children Students:
-              {{ form.get("nombreDenfantsEleves")?.value }}
-            </p>
-            <p>Higher Studies: {{ form.get("etudeSuperieure")?.value }}</p>
-            <p>
-              Desired Age of Departure:
-              {{ form.get("ageSouhaiteDeDepart")?.value }}
-            </p>
-            <p>
-              Age at the Start of Professional Activity:
-              {{ form.get("ageDuDebutdactiviteProfessionnelle")?.value }}
-            </p>
-            <p>Current Level: {{ form.get("niveauActuel")?.value }}</p>
-            <p>Evolution: {{ form.get("evolution")?.value }}</p>
-            <p>Individual Title: {{ form.get("titreIndividuel")?.value }}</p>
-            <p>
-              Optional Professional Title:
-              {{ form.get("titreProfessionnelFacultatif")?.value }}
-            </p>
-            <p>
-              Mandatory Professional Title:
-              {{ form.get("titreProfessionnelObligatoire")?.value }}
-            </p>
-          </div>
-        </article>
-      </section>
 
       <!-- Thank you -->
       <section
@@ -1001,7 +982,7 @@ Service militaire effectué  □ -->
           type="button"
           class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine"
         >
-          Retourner
+          Étape précédente
         </button>
         <button
           [disabled]="form.invalid"
@@ -1009,9 +990,9 @@ Service militaire effectué  □ -->
           (click)="changePage(true)"
           type="button"
           class="bg-primary-marine text-neutral-magnolia px-5 py-2 rounded disabled:bg-neutral-cool-gray hover:bg-opacity-90 xl:px-7 xl:py-3 xl:rounded-lg"
-          style="background-color: rgb(144, 0, 255); color: white"
+          style="background-color: #960087; color: white"
         >
-          L'étape suivante
+          Étape suivante
         </button>
         <button
           *ngIf="currentStep === 8"
@@ -1023,4 +1004,191 @@ Service militaire effectué  □ -->
       </nav>
     </div>
   </form>
+</div>
+<div *ngIf="currentStep === 8 && !lastPage">
+  <section class="section profile">
+    <div class="row" id="row">
+      <div class="card" id="card_user">
+        <div
+          class="card-body profile-card pt-4 d-flex flex-column align-items-center"
+        >
+          <i class="bi bi-buildings" id="icon"></i>
+          <img
+            src="../../assets/images/LOGO LCDP_RVB.png"
+            style="width: 200px; margin-bottom: 20px"
+            alt=""
+          />
+        </div>
+        <div class="information_user">
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Nom &amp; Prénom:</div>
+            <div class="col-lg-4 col-md-8">{{ form.get("nom")?.value }}</div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Tel :</div>
+            <div class="col-lg-4 col-md-8">{{ form.get("tel")?.value }}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Civilité :</div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("civilite")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Année de naissance :</div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("anneDeNaissance")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Situation familiale :</div>
+            <div class="custom-flex">
+              <div
+                class="multy-item"
+                *ngFor="let e of form.get('situationFamiliale')?.value"
+              >
+                {{ e }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              Nombre d'enfants eus ou adoptés :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("nombreDenfants")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Nombre d'enfants élevés :</div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("nombreDenfantsEleves")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Etude supérieure :</div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("etudeSuperieure")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">Age souhaité de départ :</div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("ageSouhaiteDeDepart")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              Age de début d'activité professionnelle :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("ageDuDebutdactiviteProfessionnelle")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              Dans votre carrière avez-vous été dans une ou plusieurs de ces
+              situations? :
+            </div>
+            <div class="custom-flex">
+              <div
+                class="multy-item"
+                *ngFor="let e of form.get('avezVousEte')?.value"
+              >
+                {{ e }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              Avez-vous rencontré une ou plusieurs de ces situations? :
+            </div>
+            <div class="custom-flex">
+              <div
+                class="multy-item"
+                *ngFor="let e of form.get('avezVousRencontre')?.value"
+              >
+                {{ e }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              Niveau actuel (net annuel avant impôts) ? :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("niveauActuel")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              Son évolution durant la carrière? :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("evolution")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              A titre individuel (PER, assurance vie…) :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("titreIndividuel")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              A titre professionnel obligatoire (PERO...) :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("titreProfessionnelObligatoire")?.value }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-md-4 label">
+              A titre professionnel facultatif (PERCO, Madelin...) :
+            </div>
+            <div class="col-lg-4 col-md-8">
+              {{ form.get("titreProfessionnelFacultatif")?.value }}
+            </div>
+          </div>
+        </div>
+        <div class="footer-final">
+          <button
+            *ngIf="currentStep >= 2"
+            (click)="changePage(false)"
+            type="button"
+            class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine"
+          >
+            Étape précédente
+          </button>
+          <button
+            style="background-color: #960087; color: white"
+            *ngIf="currentStep === 8"
+            (click)="onSubmit()"
+            class="bg-primary-purplish-blue text-neutral-magnolia px-6 py-[0.625rem] rounded hover:bg-opacity-90 xl:px-7 xl:py-3 xl:rounded-lg"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+
+      <!---->
+    </div>
+  </section>
 </div>

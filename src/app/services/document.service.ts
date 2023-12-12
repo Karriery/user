@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DocumentService {
   private apiUrl = 'http://31.207.37.178:3000';
+  // private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 

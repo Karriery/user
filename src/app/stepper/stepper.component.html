@@ -1,7 +1,7 @@
 <section class="pt-7 flex justify-center gap-4 xl:flex-col xl:gap-6">
   <div *ngFor="let step of steps" class="xl:flex xl:items-center xl:gap-4">
     <div
-      class="border font-semibold text-sm text-primary-light-blue rounded-full w-8 h-8 flex justify-center items-center"
+      class="border font-semibold text-sm text-primary-light-blue rounded-full w-8 h-8 flex justify-center items-center customside"
       [ngClass]="{
         'bg-primary-light-blue border-none': currentStep === step
       }"
@@ -15,19 +15,14 @@
       </p>
     </div>
     <div class="hidden xl:block">
-      <p class="text-sm text-neutral-cool-gray -mb-[0.25rem]">
-        STEP {{ step }}
-      </p>
-      <p class="font-medium text-neutral-magnolia">
-        {{
-          step === 1
-            ? "YOUR INFO"
-            : step === 2
-            ? "SELECT PLAN"
-            : step === 3
-            ? "ADD-ONS"
-            : "SUMMARY"
-        }}
+      <p
+        [ngClass]="{
+          'custom-same-step': currentStep === step
+        }"
+        class="text-sm text-neutral-cool-white -mb-[0.25rem]"
+        style="color: white; font-size: 18px"
+      >
+        Étape {{ step }}
       </p>
     </div>
   </div>
