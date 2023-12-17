@@ -165,7 +165,14 @@
             <div class="text-neutral-cool-gray font-medium mb-1">
               Année de naissance
             </div>
-            <select
+            <input
+              formControlName="anneDeNaissance"
+              id="anneDeNaissance"
+              class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
+              type="date"
+              required
+            />
+            <!-- <select
               name="anneDeNaissance"
               id="anneDeNaissance"
               formControlName="anneDeNaissance"
@@ -184,10 +191,7 @@
               <option value="1966">1966</option>
               <option value="1967">1967</option>
               <option value="1968, et après">1968, et après</option>
-              <!-- Avant 1957 □1957 □ 1958 □ 1959 □ 1960 □   1961, avant 31/08 □  1961, après 31/08 □
-              1962 □ 1963 □ 1964 □ 1965 □ 1966 □ 1967 □ 1968, et après  □
-              -->
-            </select>
+            </select> -->
             <p
               class="text-primary-strawberry-red font-semibold"
               style="color: red"
@@ -524,7 +528,6 @@
               id="ageDuDebutdactiviteProfessionnelle"
               formControlName="ageDuDebutdactiviteProfessionnelle"
             >
-              <option value="5">Avant 16 ans</option>
               <option value="16">16</option>
               <option value="17">17</option>
               <option value="18">18</option>

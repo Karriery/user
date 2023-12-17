@@ -1,23 +1,4 @@
-
-@import 'sweetalert2/dist/sweetalert2.min.css';
-
-full-calendar {
-    width: 70%;
-    height: 70vh;
-    border-collapse: collapse;
-    border-radius: 1em;
-    overflow: hidden;
-  
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    /* --hairline: rgb(218, 220, 224);*/
-  }
-  
-  .calendar {
-    margin-top: 100px;
-    display: grid;
-    grid-template-columns: 1fr;
-    height: 70vh;
-    justify-items: center;
-    align-items: center;
-  }
-  
+#calendly {
+  background-color: white;
+  height: 100vh;
+}

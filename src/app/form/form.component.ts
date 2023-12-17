@@ -123,6 +123,37 @@ export class FormComponent {
   }
 
   onSubmit() {
+    const birthDate = new Date(this.form.value.anneDeNaissance);
+    const birthYear = birthDate.getFullYear().toString();
+    const birthMonth = birthDate.getMonth() + 1; // Months are zero-based
+    var lastvalue = '';
+
+    // Handle special case for the year 1961
+    if (birthYear === '1961') {
+      // Check the day to determine which key to use
+      const day = birthDate.getDate();
+
+      if (birthMonth < 8) {
+        lastvalue = '1961, avant 31/08';
+      } else if (birthMonth === 8 && day <= 31) {
+        lastvalue = '1961, avant 31/08';
+      } else {
+        lastvalue = '1961, après 31/08';
+      }
+    } else {
+      // Use the standard approach for other years
+      lastvalue = birthYear;
+    }
+
+    if (parseInt(birthYear) < 1957) {
+      lastvalue = 'Avant 1957';
+    }
+
+    if (parseInt(birthYear) > 1968) {
+      lastvalue = '1968, et après';
+    }
+    this.form.value.anneDeNaissance = lastvalue;
+
     this.documentService.createDocument(this.form.value).subscribe(
       (response) => {
         this.router.navigate(['/result'], {

@@ -101,8 +101,17 @@ export class BookcallComponent {
   };
 
   ngOnInit() {
+    // @ts-ignore
+
     this.route.queryParams.subscribe((queryParams: any) => {
       console.log(queryParams);
+      // @ts-ignore
+      window.Calendly.initInlineWidget({
+        url: 'https://calendly.com/halimboussada10/halim',
+        parentElement: document.getElementById('calendly'),
+        prefill: {},
+        utm: {},
+      });
       this.documentService.getById(queryParams.id).subscribe((data) => {
         console.log(data);
         this.document = data;
