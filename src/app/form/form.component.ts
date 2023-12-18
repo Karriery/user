@@ -38,7 +38,7 @@ export class FormComponent {
     private documentService: DocumentService,
     private router: Router
   ) {}
-
+  avC: any = false;
   ngOnInit(): void {
     this.form = new FormGroup({
       nom: new FormControl(null, [
@@ -71,16 +71,31 @@ export class FormComponent {
       titreProfessionnelObligatoire: new FormControl(null),
     });
   }
+  cilib: any = false;
+  marie: any = false;
   updateMaritalStatus(value: string, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
+    console.log(isChecked);
     const currentMaritalStatus = this.form.get(
       'situationFamiliale'
     ) as FormControl;
     let selectedMaritalStatus = currentMaritalStatus.value || [];
 
     if (isChecked) {
+      if (value === 'Célibataire') {
+        this.cilib = true;
+      }
+      if (value === 'Marié ou remarié') {
+        this.marie = true;
+      }
       selectedMaritalStatus.push(value);
     } else {
+      if (value === 'Célibataire') {
+        this.cilib = false;
+      }
+      if (value === 'Marié ou remarié') {
+        this.marie = false;
+      }
       selectedMaritalStatus = selectedMaritalStatus.filter(
         (status: string) => status !== value
       );
@@ -95,8 +110,19 @@ export class FormComponent {
     let selectedavezVousEte = currentavezVousEte.value || [];
 
     if (isChecked) {
+      if (value === 'Salarié du secteur privé') {
+        this.avC = true;
+      }
       selectedavezVousEte.push(value);
     } else {
+      if (value === 'Salarié du secteur privé') {
+        this.avC = false;
+        selectedavezVousEte.splice(
+          selectedavezVousEte.indexOf('Avec changement demployeur'),
+          1
+        );
+      }
+
       selectedavezVousEte = selectedavezVousEte.filter(
         (status: string) => status !== value
       );

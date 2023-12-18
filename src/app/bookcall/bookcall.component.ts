@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { MeetingsService } from '../services/meetings.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DocumentService } from '../services/document.service';
+import { LoaderService } from '../services/loader.service';
+
 @Component({
   selector: 'app-bookcall',
   templateUrl: './bookcall.component.html',
@@ -17,7 +19,8 @@ export class BookcallComponent {
     private meetingService: MeetingsService,
     private route: ActivatedRoute,
     private router: Router,
-    private documentService: DocumentService
+    private documentService: DocumentService,
+    private loaderService: LoaderService
   ) {}
   checkTime(i: any) {
     return i < 10 ? '0' + i : i;
@@ -102,15 +105,26 @@ export class BookcallComponent {
 
   ngOnInit() {
     // @ts-ignore
-
     this.route.queryParams.subscribe((queryParams: any) => {
       console.log(queryParams);
+      this.loaderService.show();
       // @ts-ignore
       window.Calendly.initInlineWidget({
         url: 'https://calendly.com/halimboussada10/halim',
         parentElement: document.getElementById('calendly'),
-        prefill: {},
-        utm: {},
+        prefill: {
+          first_name: 'XYZ Corp',
+        },
+        utm: {
+          source: 'ssssssssssss',
+          medium: 'ddddddddddd',
+          campaign: 'calendly-promo',
+        },
+        onLoad: () => {
+          // This callback will be triggered when Calendly has finished loading
+          this.loaderService.hide();
+          console.log(this.loaderService.loaderState);
+        },
       });
       this.documentService.getById(queryParams.id).subscribe((data) => {
         console.log(data);

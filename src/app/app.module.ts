@@ -9,9 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { BookcallComponent } from './bookcall/bookcall.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FullCalendarModule } from '@fullcalendar/angular';
-
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptor } from './Interceptors/loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     HomeComponent,
     BookcallComponent,
     StepperComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,13 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     HttpClientModule,
     FullCalendarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

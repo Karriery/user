@@ -213,8 +213,13 @@
                 <input
                   type="checkbox"
                   (change)="updateMaritalStatus('Célibataire', $event)"
+                  [disabled]="marie"
                 />
-                <span class="ml-2">Célibataire</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: marie ? 'gray' : '#02295A' }"
+                  >Célibataire</span
+                >
               </label>
             </div>
             <div class="flex gap-3">
@@ -242,8 +247,13 @@
                 <input
                   type="checkbox"
                   (change)="updateMaritalStatus('Marié ou remarié', $event)"
+                  [disabled]="cilib"
                 />
-                <span class="ml-2">Marié ou remarié</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: cilib ? 'gray' : '#02295A' }"
+                  >Marié ou remarié</span
+                >
               </label>
               <!-- Add the rest of the marital status options -->
             </div>
@@ -557,7 +567,7 @@
               </label>
             </div>
             <div class="flex gap-3">
-              <label class="flex items-center cursor-pointer">
+              <label class="flex items-center cursor-pointer" *ngIf="avC">
                 <input
                   type="checkbox"
                   name="maritalStatus"
