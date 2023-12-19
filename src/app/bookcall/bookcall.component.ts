@@ -106,26 +106,25 @@ export class BookcallComponent {
   ngOnInit() {
     // @ts-ignore
     this.route.queryParams.subscribe((queryParams: any) => {
-      console.log(queryParams);
-      this.loaderService.show();
       // @ts-ignore
       window.Calendly.initInlineWidget({
         url: 'https://calendly.com/halimboussada10/halim',
         parentElement: document.getElementById('calendly'),
-        prefill: {
-          first_name: 'XYZ Corp',
+        prefill: {},
+        customAnswers: {
+          a1: 'a1',
+          a2: 'a2',
         },
-        utm: {
-          source: 'ssssssssssss',
-          medium: 'ddddddddddd',
-          campaign: 'calendly-promo',
-        },
-        onLoad: () => {
-          // This callback will be triggered when Calendly has finished loading
-          this.loaderService.hide();
-          console.log(this.loaderService.loaderState);
-        },
+        utm: {},
       });
+      // @ts-ignore
+      window.addEventListener('calendly:event-scheduled', function (event) {
+        // your event handling code here
+        console.log('schedualeddddd');
+        // Redirect to your desired URL after the event is scheduled
+        window.location.href = 'http://localhost:4200';
+      });
+
       this.documentService.getById(queryParams.id).subscribe((data) => {
         console.log(data);
         this.document = data;

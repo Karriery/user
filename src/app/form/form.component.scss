@@ -151,6 +151,14 @@ hr {
   grid-template-columns: 200px 200px;
 }
 
+.custom-btn-pre {
+  border: 1px solid #960087;
+  color: #960087;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
 @media only screen and (max-width: 600px) {
 
   .footer-final {
@@ -164,5 +172,6 @@ hr {
     width: 100%;
 
   }
+
 
 }

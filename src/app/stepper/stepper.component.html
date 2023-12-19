@@ -3,7 +3,7 @@
     <div
       class="border font-semibold text-sm text-primary-light-blue rounded-full w-8 h-8 flex justify-center items-center customside"
       [ngClass]="{
-        'bg-primary-light-blue border-none': currentStep === step
+        'bg-primary-light-blue border-custom': currentStep === step
       }"
     >
       <p
@@ -20,6 +20,7 @@
           'custom-same-step': currentStep === step
         }"
         class="text-sm text-neutral-cool-white -mb-[0.25rem]"
+        id="step"
         style="color: white; font-size: 18px"
       >
         Étape {{ step }}

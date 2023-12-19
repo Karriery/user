@@ -25,7 +25,7 @@
     </picture>
 
     <div
-      class="xl:flex xl:flex-col xl:justify-between xl:mx-auto xl:mt-10 xl:max-w-[28.125rem]"
+      class="xl:flex xl:flex-col xl:justify-between xl:mx-auto xl:mt-10 xl:max-w-[28.125rem] min-w-[21.125rem]"
     >
       <!-- Step 1 -->
       <section *ngIf="currentStep === 1">
@@ -111,7 +111,7 @@
             }"
             formControlName="tel"
             class="border border-neutral-light-gray text-primary-marine focus:outline-none focus:border-primary-purplish-blue p-[0.625rem] rounded-md placeholder:font-medium xl:py-4 xl:placeholder:text-lg xl:placeholder:font-normal"
-            type="number"
+            type="tel"
             required
             placeholder="ex. +33 09 67 40 04 53"
           />
@@ -163,7 +163,7 @@
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Année de naissance
+              Date de naissance
             </div>
             <input
               formControlName="anneDeNaissance"
@@ -201,7 +201,7 @@
                   form.controls['anneDeNaissance'].touched)
               "
             >
-              Année de naissance invalide
+              Date de naissance invalide
             </p>
           </li>
           <li>
@@ -212,6 +212,9 @@
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.situationFamiliale.includes('Célibataire')
+                  "
                   (change)="updateMaritalStatus('Célibataire', $event)"
                   [disabled]="marie"
                 />
@@ -227,6 +230,7 @@
                 <input
                   type="checkbox"
                   name="maritalStatus"
+                  [checked]="form.value.situationFamiliale.includes('Veuf')"
                   (change)="updateMaritalStatus('Veuf', $event)"
                 />
                 <span class="ml-2">Veuf</span>
@@ -236,6 +240,7 @@
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="form.value.situationFamiliale.includes('Divorcé')"
                   (change)="updateMaritalStatus('Divorcé', $event)"
                 />
                 <span class="ml-2">Divorcé</span>
@@ -246,6 +251,9 @@
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.situationFamiliale.includes('Marié ou remarié')
+                  "
                   (change)="updateMaritalStatus('Marié ou remarié', $event)"
                   [disabled]="cilib"
                 />
@@ -261,6 +269,11 @@
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.situationFamiliale.includes(
+                      'Pacs ou concubinage'
+                    )
+                  "
                   (change)="updateMaritalStatus('Pacs ou concubinage', $event)"
                 />
                 <span class="ml-2">Pacs ou concubinage</span>
@@ -451,9 +464,9 @@
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Age souhaité de départ
+              Àge souhaité de départ
             </div>
-            <div class="flex gap-3">
+            <div class="flex flex-wrap gap-3">
               <label class="flex items-center cursor-pointer">
                 <input
                   type="radio"
@@ -531,23 +544,24 @@
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Age de début d'activité professionnelle
+              Àge de début d'activité professionnelle
             </div>
             <select
               name="ageDuDebutdactiviteProfessionnelle"
               id="ageDuDebutdactiviteProfessionnelle"
               formControlName="ageDuDebutdactiviteProfessionnelle"
             >
-              <option value="16">16</option>
-              <option value="17">17</option>
-              <option value="18">18</option>
-              <option value="19">19</option>
-              <option value="20">20</option>
-              <option value="21">21</option>
-              <option value="22">22</option>
-              <option value="23">23</option>
-              <option value="24">24</option>
-              <option value="25">25</option>
+              <option value="16">16 ans</option>
+              <option value="17">17 ans</option>
+              <option value="18">18 ans</option>
+              <option value="19">19 ans</option>
+              <option value="20">20 ans</option>
+              <option value="21">21 ans</option>
+              <option value="22">22 ans</option>
+              <option value="23">23 ans</option>
+              <option value="24">24 ans</option>
+              <option value="25">25 ans</option>
+              <option value="25">25 ans et +</option>
             </select>
           </li>
           <li>
@@ -559,6 +573,9 @@
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes('Salarié du secteur privé')
+                  "
                   (change)="
                     updateavezVousEte('Salarié du secteur privé', $event)
                   "
@@ -571,6 +588,11 @@
                 <input
                   type="checkbox"
                   name="maritalStatus"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Avec changement demployeur'
+                    )
+                  "
                   (change)="
                     updateavezVousEte('Avec changement demployeur', $event)
                   "
@@ -595,6 +617,11 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Salarié statut spécial (Ratp, SNCF…)'
+                    )
+                  "
                   (change)="
                     updateavezVousEte(
                       'Salarié statut spécial (Ratp, SNCF…)',
@@ -609,6 +636,7 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="form.value.avezVousEte.includes('Agent de lEtat')"
                   (change)="updateavezVousEte('Agent de lEtat', $event)"
                 />
                 <span class="ml-2">Agent de l'Etat</span>
@@ -618,6 +646,11 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Travailleur non salarié  (indépendant)'
+                    )
+                  "
                   (change)="
                     updateavezVousEte(
                       'Travailleur non salarié  (indépendant)',
@@ -632,6 +665,9 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes('Profession libérale')
+                  "
                   (change)="updateavezVousEte('Profession libérale', $event)"
                 />
                 <span class="ml-2">Profession libérale</span>
@@ -641,6 +677,9 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes('Cotisation > minimum')
+                  "
                   (change)="updateavezVousEte('Cotisation > minimum', $event)"
                 />
                 <span class="ml-2">Cotisation > minimum</span>
@@ -650,6 +689,11 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Si Prof. Médicale ; conventionné'
+                    )
+                  "
                   (change)="
                     updateavezVousEte(
                       'Si Prof. Médicale ; conventionné',
@@ -664,6 +708,7 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="form.value.avezVousEte.includes('Fonctionnaire')"
                   (change)="updateavezVousEte('Fonctionnaire', $event)"
                 />
                 <span class="ml-2">Fonctionnaire</span>
@@ -673,6 +718,9 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes('Travail à létranger')
+                  "
                   (change)="updateavezVousEte('Travail à létranger', $event)"
                 />
                 <span class="ml-2">Travail à l'étranger</span>
@@ -682,6 +730,11 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Plusieurs régimes en même temps'
+                    )
+                  "
                   (change)="
                     updateavezVousEte('Plusieurs régimes en même temps', $event)
                   "
@@ -693,6 +746,11 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Apprentissage, job étudiants ?'
+                    )
+                  "
                   (change)="
                     updateavezVousEte('Apprentissage, job étudiants ?', $event)
                   "
@@ -704,6 +762,11 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [checked]="
+                    form.value.avezVousEte.includes(
+                      'Service militaire effectué'
+                    )
+                  "
                   (change)="
                     updateavezVousEte('Service militaire effectué', $event)
                   "
@@ -730,47 +793,87 @@ Service militaire effectué  □ -->
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [disabled]="aucune"
+                  [checked]="
+                    form.value.avezVousRencontre.includes(
+                      'Arrêt maladie > 1 mois'
+                    )
+                  "
                   (change)="
                     updateavezVousRencontre('Arrêt maladie > 1 mois', $event)
                   "
                 />
-                <span class="ml-2">Arrêt maladie > 1 mois</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: aucune ? 'gray' : '#02295A' }"
+                  >Arrêt maladie > 1 mois</span
+                >
               </label>
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [disabled]="aucune"
                   name="maritalStatus"
+                  [checked]="
+                    form.value.avezVousRencontre.includes(
+                      'Arrêt accident du travail'
+                    )
+                  "
                   (change)="
                     updateavezVousRencontre('Arrêt accident du travail', $event)
                   "
                 />
-                <span class="ml-2">Arrêt accident du travail</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: aucune ? 'gray' : '#02295A' }"
+                  >Arrêt accident du travail</span
+                >
               </label>
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [disabled]="aucune"
+                  [checked]="
+                    form.value.avezVousRencontre.includes('Invalidité')
+                  "
                   (change)="updateavezVousRencontre('Invalidité', $event)"
                 />
-                <span class="ml-2">Invalidité</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: aucune ? 'gray' : '#02295A' }"
+                  >Invalidité</span
+                >
               </label>
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [disabled]="aucune"
+                  [checked]="form.value.avezVousRencontre.includes('Chômage')"
                   (change)="updateavezVousRencontre('Chômage', $event)"
                 />
-                <span class="ml-2">Chômage</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: aucune ? 'gray' : '#02295A' }"
+                  >Chômage</span
+                >
               </label>
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
+                  [disabled]="aucune"
+                  [checked]="
+                    form.value.avezVousRencontre.includes(
+                      'Congéz parental, dassistance…'
+                    )
+                  "
                   (change)="
                     updateavezVousRencontre(
                       'Congéz parental, dassistance…',
@@ -778,7 +881,30 @@ Service militaire effectué  □ -->
                     )
                   "
                 />
-                <span class="ml-2">Congéz parental, d'assistance…</span>
+                <span
+                  class="ml-2"
+                  [ngStyle]="{ color: aucune ? 'gray' : '#02295A' }"
+                  >Congéz parental, d'assistance…</span
+                >
+              </label>
+            </div>
+            <div class="flex gap-3">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  (change)="updateavezVousRencontre('Aucune', $event)"
+                  [checked]="aucune"
+                  [disabled]="form.value.avezVousRencontre.length"
+                />
+                <span
+                  class="ml-2"
+                  [ngStyle]="{
+                    color: form.value.avezVousRencontre.length
+                      ? 'gray'
+                      : '#02295A'
+                  }"
+                  >Aucune</span
+                >
               </label>
             </div>
           </li>
@@ -794,7 +920,7 @@ Service militaire effectué  □ -->
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Niveau actuel (net annuel avant impôts) ?
+              Revenus professionnels actuels (net annuel avant impôts) ?
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -834,7 +960,7 @@ Service militaire effectué  □ -->
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              Son évolution durant la carrière?
+              Évolution durant la carrière?
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -893,7 +1019,7 @@ Service militaire effectué  □ -->
         <ul class="grid grid-cols-1 gap-6">
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              A titre individuel (PER, assurance vie…)
+              À titre individuel (PER, assurance vie…)
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -920,7 +1046,7 @@ Service militaire effectué  □ -->
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              A titre professionnel obligatoire (PERO...)
+              À titre professionnel obligatoire (PERO...)
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -947,7 +1073,7 @@ Service militaire effectué  □ -->
           </li>
           <li>
             <div class="text-neutral-cool-gray font-medium mb-1">
-              A titre professionnel facultatif (PERCO, Madelin...)
+              À titre professionnel facultatif (PERCO, Madelin...)
             </div>
             <div class="flex gap-3">
               <label class="flex items-center cursor-pointer">
@@ -993,7 +1119,7 @@ Service militaire effectué  □ -->
           *ngIf="currentStep >= 2"
           (click)="changePage(false)"
           type="button"
-          class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine"
+          class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine custom-btn-pre"
         >
           Étape précédente
         </button>
@@ -1050,7 +1176,7 @@ Service militaire effectué  □ -->
           </div>
 
           <div class="row">
-            <div class="col-lg-8 col-md-4 label">Année de naissance :</div>
+            <div class="col-lg-8 col-md-4 label">Date de naissance :</div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("anneDeNaissance")?.value }}
             </div>
@@ -1085,14 +1211,14 @@ Service militaire effectué  □ -->
           </div>
 
           <div class="row">
-            <div class="col-lg-8 col-md-4 label">Etude supérieure :</div>
+            <div class="col-lg-8 col-md-4 label">Étude supérieure :</div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("etudeSuperieure")?.value }}
             </div>
           </div>
 
           <div class="row">
-            <div class="col-lg-8 col-md-4 label">Age souhaité de départ :</div>
+            <div class="col-lg-8 col-md-4 label">Àge souhaité de départ :</div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("ageSouhaiteDeDepart")?.value }}
             </div>
@@ -1100,7 +1226,7 @@ Service militaire effectué  □ -->
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">
-              Age de début d'activité professionnelle :
+              Àge de début d'activité professionnelle :
             </div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("ageDuDebutdactiviteProfessionnelle")?.value }}
@@ -1138,7 +1264,7 @@ Service militaire effectué  □ -->
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">
-              Niveau actuel (net annuel avant impôts) ? :
+              Revenus professionnels actuels (net annuel avant impôts) ? :
             </div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("niveauActuel")?.value }}
@@ -1147,7 +1273,7 @@ Service militaire effectué  □ -->
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">
-              Son évolution durant la carrière? :
+              Évolution durant la carrière? :
             </div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("evolution")?.value }}
@@ -1156,7 +1282,7 @@ Service militaire effectué  □ -->
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">
-              A titre individuel (PER, assurance vie…) :
+              À titre individuel (PER, assurance vie…) :
             </div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("titreIndividuel")?.value }}
@@ -1165,7 +1291,7 @@ Service militaire effectué  □ -->
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">
-              A titre professionnel obligatoire (PERO...) :
+              À titre professionnel obligatoire (PERO...) :
             </div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("titreProfessionnelObligatoire")?.value }}
@@ -1174,7 +1300,7 @@ Service militaire effectué  □ -->
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">
-              A titre professionnel facultatif (PERCO, Madelin...) :
+              À titre professionnel facultatif (PERCO, Madelin...) :
             </div>
             <div class="col-lg-4 col-md-8">
               {{ form.get("titreProfessionnelFacultatif")?.value }}
@@ -1186,7 +1312,7 @@ Service militaire effectué  □ -->
             *ngIf="currentStep >= 2"
             (click)="changePage(false)"
             type="button"
-            class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine"
+            class="text-neutral-cool-gray px-3 py-2 rounded hover:text-primary-marine custom-btn-pre"
           >
             Étape précédente
           </button>

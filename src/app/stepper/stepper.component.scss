@@ -1,12 +1,19 @@
 .customside {
     visibility: hidden;
 }
-
+#step {
+    padding: 10px;
+}
 .custom-same-step {
     font-weight: bold;
     padding: 10px;
     border: 1px solid white;
     border-radius: 5px;
+}
+
+.border-custom {
+    background-color: #960087;
+    color: white;
 }
 @media only screen and (max-width: 1280px) {
     .customside {

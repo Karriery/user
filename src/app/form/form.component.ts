@@ -33,6 +33,7 @@ export class FormComponent {
   storage = 2;
   customProfile = 2;
   total = 9;
+  aucune: any = false;
   constructor(
     private formBuilder: FormBuilder,
     private documentService: DocumentService,
@@ -44,7 +45,6 @@ export class FormComponent {
       nom: new FormControl(null, [
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"),
       ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       tel: new FormControl(null, [
@@ -132,20 +132,27 @@ export class FormComponent {
   }
   updateavezVousRencontre(value: string, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
-    const currentavezVousRencontre = this.form.get(
-      'avezVousRencontre'
-    ) as FormControl;
-    let selectedavezVousRencontre = currentavezVousRencontre.value || [];
 
-    if (isChecked) {
-      selectedavezVousRencontre.push(value);
+    if (value === 'Aucune') {
+      this.aucune = isChecked;
+      console.log(this.aucune);
     } else {
-      selectedavezVousRencontre = selectedavezVousRencontre.filter(
-        (status: string) => status !== value
-      );
-    }
+      this.aucune = false;
+      const currentavezVousRencontre = this.form.get(
+        'avezVousRencontre'
+      ) as FormControl;
+      let selectedavezVousRencontre = currentavezVousRencontre.value || [];
 
-    currentavezVousRencontre.setValue(selectedavezVousRencontre);
+      if (isChecked) {
+        selectedavezVousRencontre.push(value);
+      } else {
+        selectedavezVousRencontre = selectedavezVousRencontre.filter(
+          (status: string) => status !== value
+        );
+      }
+
+      currentavezVousRencontre.setValue(selectedavezVousRencontre);
+    }
   }
 
   onSubmit() {
@@ -243,7 +250,7 @@ export class FormComponent {
         }
       }
       if (this.currentStep === 5) {
-        if (this.form.value.avezVousRencontre.length) {
+        if (this.form.value.avezVousRencontre.length || this.aucune === true) {
           return this.currentStep++;
         } else {
           Swal.fire({
