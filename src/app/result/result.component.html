@@ -4,6 +4,80 @@
     style="width: 200px; margin-bottom: 20px"
     alt=""
   />
+  <div class="document-design">
+    <div class="cube-box box1">
+      <img
+        *ngIf="document?.risqueTrimestre"
+        [src]="formatImageUrl(document?.risqueTrimestre.status)"
+        alt=""
+      />
+      <div class="btn btn-secondary btn-lg buton-res">
+        <i class="bi bi-hourglass-split"></i>
+        Risques sur les trimestres
+      </div>
+    </div>
+    <div class="cube-box box2">
+      <div class="btn btn-secondary btn-lg buton-res">
+        <i class="bi bi-calculator"></i>
+
+        Risques sur les régimes complémentaires
+      </div>
+      <img
+        *ngIf="document?.risqueComp"
+        [src]="formatImageUrl(document?.risqueComp.status)"
+        alt=""
+      />
+    </div>
+    <div class="cube-box box3">
+      <img
+        *ngIf="document?.risqueSup"
+        [src]="formatImageUrl(document?.risqueSup.status)"
+        alt=""
+      />
+      <div class="btn btn-secondary btn-lg buton-res">
+        <i class="bi bi-graph-up-arrow"></i>
+
+        Risques sur les régimes supplémentaires
+      </div>
+    </div>
+    <div class="cube-box boxcenter">
+      <div class="btn btn-secondary btn-lg buton-res">DiagFlash Retraite</div>
+    </div>
+    <div class="cube-box box4">
+      <div class="btn btn-secondary btn-lg buton-res">
+        <i class="bi bi-clock"></i>
+
+        Risques sur l'âge de départ
+      </div>
+      <img
+        *ngIf="document?.risqueAge"
+        [src]="formatImageUrl(document?.risqueAge.status)"
+        alt=""
+      />
+    </div>
+    <div class="cube-box box5">
+      <img
+        *ngIf="document?.risqueTraindevie"
+        [src]="formatImageUrl(document?.risqueTraindevie.status)"
+        alt=""
+      />
+      <div class="btn btn-secondary btn-lg buton-res">
+        <i class="bi bi-coin"></i>
+        Risques train de vie
+      </div>
+    </div>
+    <div class="cube-box box6">
+      <div class="btn btn-secondary btn-lg buton-res">
+        <i class="bi bi-people-fill"></i>
+        Risques réversion
+      </div>
+      <img
+        *ngIf="document?.risqueReversion"
+        [src]="formatImageUrl(document?.risqueReversion.status)"
+        alt=""
+      />
+    </div>
+  </div>
   <div class="box">
     <div class="top">
       <img
