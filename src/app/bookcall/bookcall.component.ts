@@ -108,7 +108,7 @@ export class BookcallComponent {
     this.route.queryParams.subscribe((queryParams: any) => {
       // @ts-ignore
       window.Calendly.initInlineWidget({
-        url: 'https://calendly.com/halimboussada10/halim',
+        url: 'https://calendly.com/diagflashretraite/30min',
         parentElement: document.getElementById('calendly'),
         prefill: {},
         customAnswers: {
