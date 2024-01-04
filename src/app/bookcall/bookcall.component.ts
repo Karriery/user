@@ -116,6 +116,7 @@ export class BookcallComponent {
           a2: 'a2',
         },
         utm: {},
+        locale: 'fr',
       });
       // @ts-ignore
       window.addEventListener('calendly:event-scheduled', function (event) {
