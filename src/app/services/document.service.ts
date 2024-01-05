@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DocumentService {
-  private apiUrl = 'http://31.207.37.178:3000';
+  private apiUrl = 'https://api.diagflashretraite.fr';
   // private apiUrl = 'http://31.207.37.178:3000';
 
   constructor(private http: HttpClient) {}
