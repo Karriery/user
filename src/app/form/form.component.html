@@ -28,7 +28,7 @@
       class="xl:flex xl:flex-col xl:justify-between xl:mx-auto xl:mt-10 xl:max-w-[28.125rem] min-w-[21.125rem]"
     >
       <!-- Step 1 -->
-      <section *ngIf="currentStep === 1">
+      <section *ngIf="currentStep === 7">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -116,11 +116,14 @@
             placeholder="ex. +33 09 67 40 04 53"
           />
         </div>
+        <br>
+        <br>
+        <br>
       </section>
 
       <!-- Step 2 -->
 
-      <section class="mb-8" *ngIf="currentStep === 2">
+      <section class="mb-8" *ngIf="currentStep === 1">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -286,7 +289,7 @@
 
       <!-- Step 3 -->
 
-      <section class="mb-8" *ngIf="currentStep === 3">
+      <section class="mb-8" *ngIf="currentStep === 2">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -535,7 +538,7 @@
         </ul>
       </section>
       <!-- Step 4 -->
-      <section class="mb-8" *ngIf="currentStep === 4">
+      <section class="mb-8" *ngIf="currentStep === 3">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -778,7 +781,7 @@ Service militaire effectué  □ -->
         </ul>
       </section>
       <!-- Step 5 -->
-      <section class="mb-8" *ngIf="currentStep === 5">
+      <section class="mb-8" *ngIf="currentStep === 4">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -911,7 +914,7 @@ Service militaire effectué  □ -->
         </ul>
       </section>
       <!-- Step 6 -->
-      <section class="mb-8" *ngIf="currentStep === 6">
+      <section class="mb-8" *ngIf="currentStep === 5">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -1010,7 +1013,7 @@ Service militaire effectué  □ -->
         </ul>
       </section>
       <!-- Step 7 -->
-      <section class="mb-8" *ngIf="currentStep === 7">
+      <section class="mb-8" *ngIf="currentStep === 6">
         <img
           src="../../assets/images/LOGO LCDP_RVB.png"
           style="width: 200px; margin-bottom: 20px"
@@ -1124,7 +1127,6 @@ Service militaire effectué  □ -->
           Étape précédente
         </button>
         <button
-          [disabled]="form.invalid"
           *ngIf="currentStep !== 8"
           (click)="changePage(true)"
           type="button"
@@ -1167,6 +1169,7 @@ Service militaire effectué  □ -->
             <div class="col-lg-8 col-md-4 label">Numéro de téléphone :</div>
             <div class="col-lg-4 col-md-8">{{ form.get("tel")?.value }}</div>
           </div>
+
 
           <div class="row">
             <div class="col-lg-8 col-md-4 label">Civilité :</div>

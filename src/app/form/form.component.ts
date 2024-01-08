@@ -204,10 +204,19 @@ export class FormComponent {
     if (!isNextPage) {
       return this.currentStep--;
     } else {
-      if (this.currentStep === 1) {
-        return this.currentStep++;
+      if (this.currentStep === 7) {
+        if(this.form.valid){
+          return this.currentStep++;
+
+        } else {
+          Swal.fire({
+            icon: 'error',
+            text: 'Vous devez remplir toutes les entrées!',
+          });
+        }
       }
-      if (this.currentStep === 2) {
+    
+      if (this.currentStep === 1) {
         if (
           this.form.value.civilite !== null &&
           this.form.value.anneDeNaissance !== null &&
@@ -221,7 +230,7 @@ export class FormComponent {
           });
         }
       }
-      if (this.currentStep === 3) {
+      if (this.currentStep === 2) {
         if (
           this.form.value.nombreDenfants !== null &&
           this.form.value.nombreDenfantsEleves !== null &&
@@ -236,7 +245,7 @@ export class FormComponent {
           });
         }
       }
-      if (this.currentStep === 4) {
+      if (this.currentStep === 3) {
         if (
           this.form.value.ageDuDebutdactiviteProfessionnelle !== null &&
           this.form.value.avezVousEte.length
@@ -249,7 +258,7 @@ export class FormComponent {
           });
         }
       }
-      if (this.currentStep === 5) {
+      if (this.currentStep === 4) {
         if (this.form.value.avezVousRencontre.length || this.aucune === true) {
           return this.currentStep++;
         } else {
@@ -259,7 +268,7 @@ export class FormComponent {
           });
         }
       }
-      if (this.currentStep === 6) {
+      if (this.currentStep === 5) {
         if (
           this.form.value.niveauActuel !== null &&
           this.form.value.evolution !== null
@@ -272,7 +281,7 @@ export class FormComponent {
           });
         }
       }
-      if (this.currentStep === 7) {
+      if (this.currentStep === 6) {
         if (
           this.form.value.titreIndividuel !== null &&
           this.form.value.titreProfessionnelObligatoire !== null &&
