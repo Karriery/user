@@ -29,7 +29,9 @@ export class ResultComponent {
       return '../../assets/images/' + name + '.png';
     }
   }
-
+  navto(){
+    window.open('https://powerforms.docusign.net/83b3c6ae-e2de-4c77-9bfc-dda161d4de9c?env=eu&acct=54861fdd-188a-4beb-a046-82b8161a75c6&accountId=54861fdd-188a-4beb-a046-82b8161a75c6', '_blank');
+  }
   bookCall() {
     this.router.navigate(['/bookcall'], {
       queryParams: { id: this.document._id },
